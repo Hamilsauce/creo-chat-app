@@ -1,0 +1,56 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { Observable, BehaviorSubject, Subject, firstValueFrom, map } from 'rxjs';
+import { User } from './user.model';
+
+
+@Injectable()
+export class AuthenticationService {
+  private userSubject: Subject<User> = new BehaviorSubject<User>({
+    username: '',
+    password: '',
+    email: ''
+  });
+
+  user$: Observable<User> = this.userSubject.asObservable();
+  // currentUserSubject: BehaviorSubject<User | null>
+  // currentUser: Observable<User | null>
+
+  constructor(private http: HttpClient) {
+    // this.currentUserSubject = new BehaviorSubject(null);
+    // this.currentUser = this.currentUserSubject.asObservable();
+  }
+
+
+  putRegisteredUser(user: User): Observable<any> {
+    return this.http.put(environment.registrationUri, user);
+  }
+
+  async getRegisteredUser(email: string): Promise<void> {
+    this.userSubject.next(await firstValueFrom(this.http.get<User>(`${ environment.registrationUri }/${ email }`)))
+  }
+
+
+  // public get currentUserValue(): User {
+  //   return this.currentUserSubject.value;
+  // }
+
+  // login(username: string, password: string) {
+  //   // return this.http.post(`${ environment.apiUrl }/users/authenticate`, { username, password })
+  //     .pipe(map(user => {
+  //       // store user details and basic auth credentials in local storage to keep user logged in between page refreshes
+  //       // user.authdata = window.btoa(username + ':' + password);
+  //       // localStorage.setItem('currentUser', JSON.stringify(user));
+  //       // this.currentUserSubject.next(user);
+  //       return user;
+  //     }));
+  // }
+
+  logout() {
+    localStorage.removeItem('currentUser');
+    // remove user from local storage to log user out
+    // this.currentUserSubject.next(null);
+  }
+
+}

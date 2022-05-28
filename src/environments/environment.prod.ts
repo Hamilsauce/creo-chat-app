@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  registrationUri: 'http://localhost:4100/users'
 };
