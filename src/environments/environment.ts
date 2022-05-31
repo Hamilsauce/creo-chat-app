@@ -1,7 +1,7 @@
 
 export const environment = {
   production: false,
-  registrationUri: 'http://localhost:4100/users'
+  apiUrl: 'http://localhost:4200/api'
 };
 
 

@@ -23,7 +23,7 @@ export class AuthenticationService {
   }
 
 
-  putRegisteredUser(user: User): Observable<any> {
+  registerUser(user: User): Observable<any> {
     return this.http.put(environment.registrationUri, user);
   }
 

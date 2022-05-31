@@ -12,7 +12,7 @@
         <p>Please sign in or sign up</p>
         <!-- <p>{{ longText }}</p> -->
       </mat-card-content>
-      <form id="registration-form" [formGroup]="loginForm" (ngSubmit)="onRegistrationSubmit(loginForm)">
+      <!-- <form id="registration-form" [formGroup]="loginForm" (ngSubmit)="onRegistrationSubmit(loginForm)">
 
         <mat-form-field class="form-field">
           <input matInput placeholder="Email" formControlName="email" id="email" value="">
@@ -24,8 +24,76 @@
           <button mat-raised-button id="submit-register" type="submit" [disabled]="!loginForm.valid" mat-raised-button
             color="primary">Register</button>
         </mat-card-actions>
-      </form>
+      </form> -->
 
     </div>
+
+
+    <mat-accordion class="example-headers-align">
+      <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title class="panel-title">
+            Log in
+          </mat-panel-title>
+          <!-- <mat-panel-description>
+            Type your name and age
+            <mat-icon></mat-icon>
+          </mat-panel-description> -->
+        </mat-expansion-panel-header>
+
+        <form id="login-form" [formGroup]="loginForm" (ngSubmit)="onLogInSubmit(loginForm)">
+
+          <mat-form-field class="form-field">
+            <input matInput placeholder="Email" formControlName="loginEmail" id="login-email" value="">
+          </mat-form-field>
+          <mat-form-field class="form-field">
+            <input matInput placeholder="Password" formControlName="loginPassword" id="login-password" type="password">
+          </mat-form-field>
+          <mat-card-actions>
+            <button mat-raised-button id="submit-login" type="submit" [disabled]="!loginForm.valid" mat-raised-button
+              color="primary">Register</button>
+          </mat-card-actions>
+        </form>
+
+        <!-- <mat-form-field appearance="fill">
+          <mat-label>Age</mat-label>
+          <input matInput type="number" min="1">
+        </mat-form-field> -->
+        <mat-action-row>
+          <button mat-button color="primary" (click)="nextStep()">Next</button>
+        </mat-action-row>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title class="panel-title">
+            Sign up
+          </mat-panel-title>
+          <!-- <mat-panel-description>
+            Type your name and age
+            <mat-icon></mat-icon>
+          </mat-panel-description> -->
+        </mat-expansion-panel-header>
+        <form id="registration-form" [formGroup]="registrationForm" (ngSubmit)="onRegistrationSubmit(registrationForm)">
+
+          <mat-form-field class="form-field">
+            <input matInput placeholder="Email" formControlName="registrationEmail" id="registration-email" value="">
+          </mat-form-field>
+          <mat-form-field class="form-field">
+            <input matInput placeholder="Password" formControlName="registrationPassword" id="registration-password" type="password">
+          </mat-form-field>
+          <mat-card-actions>
+            <button mat-raised-button id="submit-register" type="submit" [disabled]="!loginForm.valid" mat-raised-button
+              color="primary">Register</button>
+          </mat-card-actions>
+        </form>
+        <mat-action-row>
+          <button mat-button color="warn" (click)="prevStep()">Previous</button>
+          <button mat-button color="primary" (click)="nextStep()">Next</button>
+        </mat-action-row>
+      </mat-expansion-panel>
+
+    </mat-accordion>
+
   </mat-card>
 </div>

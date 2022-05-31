@@ -20,20 +20,25 @@ body {
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: flex-start;
   align-items: center;
-  background: #180e1bed;
+  padding: 32px;
+  background: #3cb2b2ed;
 }
 #form-card {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  justify-content: space-around;
+  justify-content: flex-start;
   align-items: center;
-  gap: 88px;
+  gap: 32px;
   padding: 32px 54px;
 
   /* min-width:100vw;min-height:100vh; */
+}
+
+.panel-title {
+  display: flex;
+  justify-content: center;
 }
 #registration-form {
   display: flex;
