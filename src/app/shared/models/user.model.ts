@@ -4,10 +4,10 @@ export type UserAuthenticationStatus = 'unauthenticated' | 'authenticated' | 'pe
 export type UserRegistrationStatus = 'registered' | 'unregistered' | 'pending'
 
 export interface User extends BaseModel {
-  id?: number | null;
-  email?: string | null;
-  password?: string | null;
-  username?: string | null;
+  id: number | null;
+  email: string | null;
+  // password?: string | null;
+  username?: string;
   authenticationStatus?: UserAuthenticationStatus;
-  registrationStatus?: UserRegistrationStatus;
+  rooms?: string[];
 }

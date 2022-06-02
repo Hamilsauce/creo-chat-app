@@ -22,10 +22,8 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
-
           "options": {
             "outputPath": "dist/chat-app",
-
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -72,13 +70,13 @@
               "namedChunks": true
             }
           },
-          "defaultConfiguration": "production"
+          "defaultConfiguration": "development"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "chat-app:build",
-            "proxyConfig": "proxy.conf.json"
+            "proxyConfig": "src/proxy.conf.json"
           },
           "configurations": {
             "production": {

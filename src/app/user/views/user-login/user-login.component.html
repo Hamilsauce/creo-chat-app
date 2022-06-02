@@ -1,0 +1,73 @@
+<div id="login-view">
+  <mat-card mat id="form-card">
+    <div id="title-container">
+
+      <mat-card-subtitle>Welcome to</mat-card-subtitle>
+      <mat-card-title id="form-title">{{title}}</mat-card-title>
+
+    </div>
+
+    <div id="body-container">
+      <mat-card-content>
+        <p>Sign in or sign up</p>
+      </mat-card-content>
+
+
+    <mat-accordion class="example-headers-align">
+
+      <mat-expansion-panel [expanded]="panelState === 'login'" (opened)="setPanelState('login')" hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title class="panel-title">
+            Log in
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <form id="login-form" class="panel-form" [formGroup]="loginForm">
+          <mat-form-field class="form-field">
+            <input matInput placeholder="Email" formControlName="loginEmail" id="login-email" type="text">
+          </mat-form-field>
+
+          <mat-form-field class="form-field">
+            <input matInput placeholder="Password" formControlName="loginPassword" id="login-password">
+          </mat-form-field>
+        </form>
+
+        <mat-action-row>
+          <button mat-raised-button id="submit-login" type="submit" (click)="onLogInSubmit(loginForm)"
+            [disabled]="!loginForm.valid" mat-raised-button color="primary">Submit</button>
+        </mat-action-row>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel [expanded]="panelState === 'register'" (opened)="setPanelState('register')" hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title class="panel-title">
+            Sign up
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <form id="registration-form" class="panel-form" [formGroup]="registrationForm">
+          <mat-form-field class="form-field">
+            <input matInput placeholder="Username" formControlName="registrationUsername" id="registration-usernamez" value="">
+          </mat-form-field>
+          <mat-form-field class="form-field">
+            <input matInput placeholder="Email" formControlName="registrationEmail" id="registration-email" value="">
+          </mat-form-field>
+          <mat-form-field class="form-field">
+            <input matInput placeholder="Password" formControlName="registrationPassword" id="registration-password">
+          </mat-form-field>
+        </form>
+
+        <mat-action-row>
+          <button mat-button color="accent" class="panel-back-button" (click)="panelState = 'login'">Back to
+            Login</button>
+          <button mat-raised-button color="primary" (click)="onRegistrationSubmit(registrationForm)"
+            (click)="panelState === 'register'" [disabled]="!registrationForm.valid">Register</button>
+        </mat-action-row>
+      </mat-expansion-panel>
+
+    </mat-accordion>
+  </div>
+
+  </mat-card>
+
+</div>

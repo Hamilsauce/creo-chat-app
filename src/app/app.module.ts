@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatSliderModule } from '@angular/material/slider';
-
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,18 +19,22 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
-import {MatExpansionModule} from '@angular/material/expansion';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { DasboardViewComponent } from './user/views/dashboard/dasboard-view.component';
+import { UserLoginComponent } from './user/views/user-login/user-login.component';
+import { View404Component } from './shared/view404/view404.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    // UserLoginComponent,
-    AppComponent
-
+    UserLoginComponent,
+    AppComponent,
+    DasboardViewComponent,
+    View404Component
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
+    BrowserModule,
     BrowserAnimationsModule,
     MatSliderModule,
     MatCommonModule,
@@ -48,10 +50,9 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatExpansionModule,
     MatIconModule,
     HttpClientModule,
-
-
+    CommonModule
   ],
-  providers: [AuthenticationService, UserService, HttpClient],
+  providers: [AppRoutingModule, AuthenticationService, UserService, HttpClient],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

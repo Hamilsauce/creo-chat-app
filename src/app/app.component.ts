@@ -3,79 +3,80 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { AuthenticationService } from './shared/services/authentication.service';
-import { Subscription, tap } from 'rxjs';
+import { of, Subscription, tap } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { HttpStatusCode } from '@angular/common/http';
+
+export type LoginPanelState = 'login' | 'register';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-
 })
 export class AppComponent {
   public title = 'Remote Message Sending Receiving Consumer Software Module';
   // registrationForm = 'Remote Message Sending Receiving Consumer Software Module';
-  emailFormControl = new FormControl('', [Validators.required, Validators.email]);
-  loginForm: FormGroup
-  registrationForm: FormGroup
+  // panelState: LoginPanelState = 'login';
+  // emailFormControl = new FormControl('', [Validators.required, Validators.email]);
+  // loginForm: FormGroup
+  // registrationForm: FormGroup
   // accordian: MatA
   userRegistrationSubscription?: Subscription;
   loginSubscription?: Subscription;
-
-  constructor(private authService: AuthenticationService) {
-    this.loginForm = new FormGroup(
-      {
-        loginEmail: new FormControl(0, [Validators.required]),
-        loginPassword: new FormControl(0, [Validators.required]),
-      },
-      [],
-      []
-    );
-    this.registrationForm = new FormGroup(
-      {
-        registrationEmail: new FormControl(0, [Validators.required]),
-        registrationPassword: new FormControl(0, [Validators.required]),
-      },
-      [],
-      []
-    );
+  routeSubscription?: Subscription;
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private authService: AuthenticationService) {
+    this.routeSubscription = of(this.router.getCurrentNavigation()?.extras.state)
+    .pipe(
+      tap((state: any) => {
+        console.log('state', state);
+      }),
+      //   filter(params => params.tid === undefined),
+      //   mergeMap(() => {
+      //     return this.sendInvestorDeposit().pipe(
+      //       filter(_ => !Array.isArray(_)),
+      //       tap(tid => {
+      //         this.routeToChild('payment', { tid });
+      //       })
+      //     );
+      //   })
+    )
+    .subscribe();
   }
 
 
-  step = 0;
 
-  setStep(index: number) {
-    this.step = index;
-  }
-
-  nextStep() {
-    this.step++;
-  }
-
-  prevStep() {
-    this.step--;
+  setPanelState(state: LoginPanelState) {
+    // this.panelState = state;
   }
 
 
-  onLogInSubmit({ controls }: FormGroup) {
-    // console.log({ form });
-    const { loginEmail, loginPassword } = controls;
-    this.loginSubscription = this.authService.authenticateUser({ username: 'newuser1', email: loginEmail.value, password: loginPassword.value })
-      .pipe(
-        tap(x => console.warn('IN LOGIN SUBMIT')
-        )
+  // onLogInSubmit({ controls }: FormGroup) {
+  //   const { loginEmail, loginPassword } = controls;
 
-      )
-      .subscribe()
-  }
+  //   this.loginSubscription = this.authService.authenticateUser({ username: 'newuser1', email: loginEmail.value, password: loginPassword.value })
+  //     .pipe(
+  //       tap(x => console.warn('IN LOGIN SUBMIT', typeof x,{x})),
+  //       tap(res => {
+  //         if (res.status === HttpStatusCode.Ok || res.status === HttpStatusCode.Created) {
+  //           // this.router.navigate(['dashboard'], {
+  //           //   state: { user: res },
+  //           //   relativeTo: this.activatedRoute
+  //           // })
+  //         }
+  //       }),
+  //     )
+  //     .subscribe()
+  // }
 
-  onRegistrationSubmit({ controls }: FormGroup) {
-    // console.log({ form });
-    const { registrationEmail, registrationPassword } = controls;
-    this.userRegistrationSubscription = this.authService.registerUser({ username: 'newuser1', email: registrationEmail.value, password: registrationPassword.value })
-      .pipe(
-        tap(x => console.warn('IN onRegistrationSubmit SUBMIT')
+  // onRegistrationSubmit({ controls }: FormGroup) {
+  //   const { registrationEmail, registrationPassword } = controls;
+  //   this.userRegistrationSubscription = this.authService.registerUser({ username: 'newuser1', email: registrationEmail.value, password: registrationPassword.value })
+  //     .pipe(
+  //       tap(x => console.warn('IN onRegistrationSubmit SUBMIT')
 
-        ))
-      .subscribe()
-  }
+  //       ))
+  //     .subscribe()
+  // }
 
 }
