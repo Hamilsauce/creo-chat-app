@@ -20,17 +20,19 @@ import { MatInputModule } from '@angular/material/input';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { DasboardViewComponent } from './user/views/dashboard/dasboard-view.component';
-import { UserLoginComponent } from './user/views/user-login/user-login.component';
+import { DashboardViewComponent } from './user/views/dashboard/dashboard-view.component';
+import { ChatComponent } from './chat/chat.component';
 import { View404Component } from './shared/view404/view404.component';
+import { UserLoginComponent } from './user/views/user-login/user-login.component';
+import { TalkService } from './shared/services/talk.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserLoginComponent,
-    AppComponent,
-    DasboardViewComponent,
-    View404Component
+    DashboardViewComponent,
+    View404Component,
+    ChatComponent
   ],
   imports: [
     AppRoutingModule,
@@ -52,7 +54,7 @@ import { View404Component } from './shared/view404/view404.component';
     HttpClientModule,
     CommonModule
   ],
-  providers: [AppRoutingModule, AuthenticationService, UserService, HttpClient],
+  providers: [AppRoutingModule, AuthenticationService, UserService, HttpClient, TalkService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

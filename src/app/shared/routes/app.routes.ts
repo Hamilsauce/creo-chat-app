@@ -1,5 +1,5 @@
 
-import { DasboardViewComponent } from 'src/app/user/views/dashboard/dasboard-view.component';
+import { DashboardViewComponent } from 'src/app/user/views/dashboard/dashboard-view.component';
 import { UserLoginComponent } from 'src/app/user/views/user-login/user-login.component';
 import { UserAuthGuard } from './user-auth.guard';
 
@@ -12,7 +12,7 @@ export const AppRoutes = [
       {
         canActivate:  [UserAuthGuard],
         path: 'dashboard',
-        component: DasboardViewComponent,
+        component: DashboardViewComponent,
       },
       // {
       //   path: 'deposit',

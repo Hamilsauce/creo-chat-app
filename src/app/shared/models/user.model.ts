@@ -4,6 +4,8 @@ export type UserAuthenticationStatus = 'unauthenticated' | 'authenticated' | 'pe
 export type UserRegistrationStatus = 'registered' | 'unregistered' | 'pending'
 
 export interface User extends BaseModel {
+  profilePictureUrl: string | null | undefined;
+  chatPreferences: any;
   id: number | null;
   email: string | null;
   // password?: string | null;
